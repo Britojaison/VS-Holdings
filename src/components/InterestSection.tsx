@@ -155,7 +155,7 @@ const InterestSection = () => {
                     </p>
 
                     <button className={styles.ambassadorButton}>
-                        MEET OUR BRAND AMBASSADOR
+                        SUBMIT
                     </button>
                 </div>
             </div>

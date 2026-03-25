@@ -3,7 +3,7 @@
     grid-template-columns: 40% 60%;
     width: 100vw;
     min-height: 100vh;
-    background-color: var(--color-earth);
+    background-color: #AD8330;
     overflow: hidden;
 }
 
@@ -46,22 +46,15 @@
 .heading h2 {
     font-size: var(--font-size-heading);
     line-height: 1.1;
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    color: var(--color-parchment);
+    color: #fff;
 }
 
 .heading h2 span {
     display: block;
     font-weight: 300;
-    opacity: 0.5;
-    background: linear-gradient(90deg, #fff, var(--color-gold), #fff);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 4s linear infinite;
 }
 
 @keyframes shine {
@@ -111,8 +104,8 @@
 }
 
 .socialIcon {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -209,11 +202,11 @@
 
 .inputGroup label {
     display: block;
-    font-size: 12px;
-    letter-spacing: 0.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 14px;
+    letter-spacing: 0.12rem;
+    margin-bottom: 0.6rem;
     font-weight: 600;
-    opacity: 0.6;
+    opacity: 0.8;
     text-transform: uppercase;
 }
 
@@ -312,8 +305,8 @@
 
 .ambassadorButton {
     margin-top: 3rem;
-    width: 100%;
-    padding: 1.25rem;
+    width: fit-content;
+    padding: 1rem 3.5rem;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(0, 0, 0, 0.15) 100%);
     background-color: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);

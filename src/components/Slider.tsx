@@ -1,13 +1,16 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import styles from "./Slider.module.css";
 
 const IMAGES = [
-    "/images/1.jpg",
-    "/images/2.jpg",
-    "/images/3.jpg",
-    "/images/4.jpg",
-    "/images/5.jpg"
+    { url: "/images/a.jpg", title: "VS HOLDINGS | SENDHUR VILLA" },
+    { url: "/images/b.jpg", title: "VS HOLDINGS | MEIRA BLOOM" },
+    { url: "/images/1.jpg" },
+    { url: "/images/2.jpg" },
+    { url: "/images/3.jpg" },
+    { url: "/images/4.jpg" },
+    { url: "/images/5.jpg" }
 ];
 
 const Slider = () => {
@@ -47,8 +50,18 @@ const Slider = () => {
                 <div
                     key={index}
                     className={`${styles.slide} ${index === currentIndex ? styles.active : ""}`}
-                    style={{ backgroundImage: `url(${image})` }}
-                />
+                    style={{ backgroundImage: `url(${image.url})` }}
+                >
+                    {image.title && index === currentIndex && (
+                        <div className={styles.slideTitleContainer}>
+                            <h2 className={styles.slideTitle}>
+                                {image.title.split('|')[0]}
+                                <span className={styles.divider}>/</span>
+                                <span className={styles.accent}>{image.title.split('|')[1]}</span>
+                            </h2>
+                        </div>
+                    )}
+                </div>
             ))}
 
             <button className={`${styles.arrow} ${styles.leftArrow}`} onClick={handlePrev}>
@@ -64,9 +77,11 @@ const Slider = () => {
             </button>
 
             <div key={`${currentIndex}-${isVisible}`} className={styles.discoverButtonContainer}>
-                <button className={styles.discoverButton}>
-                    DISCOVER THE COLLECTION
-                </button>
+                <Link href="/collection">
+                    <button className={styles.discoverButton}>
+                        DISCOVER THE COLLECTION
+                    </button>
+                </Link>
             </div>
         </section>
     );

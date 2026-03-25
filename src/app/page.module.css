@@ -226,9 +226,9 @@
 }
 
 .footer {
-    padding: 1rem 10%;
-    background-color: var(--color-earth);
-    color: var(--color-parchment);
+    padding: 1.5rem 10%;
+    background-color: #AD8330;
+    color: white;
     text-align: center;
     border-top: 1px solid rgba(173, 131, 48, 0.2);
 }

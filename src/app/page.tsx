@@ -7,7 +7,6 @@ import InterestSection from "@/components/InterestSection";
 export default function Home() {
     return (
         <div className={styles.main}>
-            <ContactOverlay />
             <section className={styles.hero}>
                 <header className={styles.header}>
                     <div className={styles.leftNav}>

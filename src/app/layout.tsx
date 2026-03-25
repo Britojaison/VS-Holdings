@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   keywords: ["VS Holdings", "Strategic Investment", "Asset Management", "Visionary Business", "Portfolio Management"],
 };
 
+import ContactOverlay from "@/components/ContactOverlay";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ContactOverlay />
         <main>{children}</main>
       </body>
     </html>
