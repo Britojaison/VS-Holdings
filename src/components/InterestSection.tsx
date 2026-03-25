@@ -55,6 +55,22 @@ const InterestSection = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        if (isDropdownOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isDropdownOpen]);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -114,7 +130,7 @@ const InterestSection = () => {
                         <input type="text" placeholder="Your Full Name" />
                     </div>
                     <div className={`${styles.inputGroup} ${styles.phoneGroup}`}>
-                        <div className={styles.countryCode}>
+                        <div className={styles.countryCode} ref={dropdownRef}>
                             <label>COUNTRY CODE</label>
                             <div className={styles.selectWrapper} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                                 <div className={styles.selectedDisplay}>{selectedCountry?.n} ({selectedCountry?.c})</div>

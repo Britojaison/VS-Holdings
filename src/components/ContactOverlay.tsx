@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./ContactOverlay.module.css";
 
@@ -56,8 +56,24 @@ const ContactOverlay = () => {
     const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.c === "+91"));
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const pathname = usePathname();
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     const toggle = () => setIsOpen(!isOpen);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        if (isDropdownOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isDropdownOpen]);
 
     useEffect(() => {
         const triggerDrop = () => {
@@ -121,7 +137,7 @@ const ContactOverlay = () => {
                             <input type="text" placeholder="Your Full Name" />
                         </div>
                         <div className={`${styles.inputGroup} ${styles.phoneGroup}`}>
-                            <div className={styles.countryCode}>
+                            <div className={styles.countryCode} ref={dropdownRef}>
                                 <label>COUNTRY CODE</label>
                                 <div className={styles.selectWrapper} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                                     <div className={styles.selectedDisplay}>{selectedCountry?.n} ({selectedCountry?.c})</div>
