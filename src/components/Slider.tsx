@@ -7,10 +7,9 @@ const IMAGES = [
     { url: "/images/a.jpg", title: "VS HOLDINGS | SENDHUR VILLA" },
     { url: "/images/b.jpg", title: "VS HOLDINGS | MEIRA BLOOM" },
     { url: "/images/1.jpg", title: "VS HOLDINGS | SENDHUR VILLA" },
-    { url: "/images/2.jpg" },
+    { url: "/images/2.jpg", title: "VS HOLDINGS | MEIRA BLOOM" },
     { url: "/images/3.jpg" },
-    { url: "/images/4.jpg" },
-    { url: "/images/5.jpg" }
+    { url: "/images/4.jpg", title: "VS HOLDINGS | MEIRA BLOOM" }
 ];
 
 const Slider = () => {
@@ -83,7 +82,7 @@ const Slider = () => {
                             DISCOVER THE COLLECTION
                         </button>
                     </Link>
-                ) : currentIndex === 1 ? (
+                ) : [1, 3, 5].includes(currentIndex) ? (
                     <Link href="/meira-bloom">
                         <button className={styles.discoverButton}>
                             DISCOVER THE COLLECTION
