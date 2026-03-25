@@ -6,7 +6,7 @@ import styles from "./Slider.module.css";
 const IMAGES = [
     { url: "/images/a.jpg", title: "VS HOLDINGS | SENDHUR VILLA" },
     { url: "/images/b.jpg", title: "VS HOLDINGS | MEIRA BLOOM" },
-    { url: "/images/1.jpg" },
+    { url: "/images/1.jpg", title: "VS HOLDINGS | SENDHUR VILLA" },
     { url: "/images/2.jpg" },
     { url: "/images/3.jpg" },
     { url: "/images/4.jpg" },
@@ -77,11 +77,23 @@ const Slider = () => {
             </button>
 
             <div key={`${currentIndex}-${isVisible}`} className={styles.discoverButtonContainer}>
-                <Link href="/collection">
-                    <button className={styles.discoverButton}>
+                {[0, 2].includes(currentIndex) ? (
+                    <Link href="/sendhur-villa">
+                        <button className={styles.discoverButton}>
+                            DISCOVER THE COLLECTION
+                        </button>
+                    </Link>
+                ) : currentIndex === 1 ? (
+                    <Link href="/meira-bloom">
+                        <button className={styles.discoverButton}>
+                            DISCOVER THE COLLECTION
+                        </button>
+                    </Link>
+                ) : (
+                    <button className={styles.discoverButton} style={{ cursor: 'default' }}>
                         DISCOVER THE COLLECTION
                     </button>
-                </Link>
+                )}
             </div>
         </section>
     );

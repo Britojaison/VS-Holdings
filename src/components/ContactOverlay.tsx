@@ -77,7 +77,8 @@ const ContactOverlay = () => {
 
     useEffect(() => {
         const triggerDrop = () => {
-            if (pathname === "/collection" && !isOpen) {
+            const projectPages = ["/sendhur-villa", "/meira-bloom"];
+            if (projectPages.includes(pathname) && !isOpen) {
                 setIsOpen(true);
             }
         };
