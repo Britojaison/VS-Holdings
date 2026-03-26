@@ -1,9 +1,26 @@
+.main {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    /* Changed to proximity for a smoother scroll that doesn't 'fight' the footer */
+    scroll-snap-type: y proximity;
+    /* Hide scrollbar but keep functionality */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.main::-webkit-scrollbar {
+    display: none;
+}
+
 .hero {
     height: 100vh;
     width: 100vw;
     position: relative;
     overflow: hidden;
     background-color: #000;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .heroVideo {
@@ -226,16 +243,19 @@
 }
 
 .footer {
-    padding: 1.5rem 10%;
+    padding: 1.5rem 5%;
     background-color: #AD8330;
     color: white;
     text-align: center;
     border-top: 1px solid rgba(173, 131, 48, 0.2);
+    width: 100%;
+    margin-top: 0;
+    scroll-snap-align: end;
 }
 
 .copyright {
-    font-size: 0.7rem;
-    opacity: 0.6;
+    font-size: 0.65rem;
+    opacity: 0.8;
     letter-spacing: 0.05rem;
 }
 

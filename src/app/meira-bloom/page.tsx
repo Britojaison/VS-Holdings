@@ -12,8 +12,8 @@ const CollectionPage = () => {
         // Start zoom effect immediately
         const zoomTimer = setTimeout(() => setIsZoomed(true), 100);
 
-        // Show UI after zoom effect finishes (1.5s transition + small delay)
-        const uiTimer = setTimeout(() => setIsUiVisible(true), 1600);
+        // Show UI after zoom effect starts
+        const uiTimer = setTimeout(() => setIsUiVisible(true), 400);
 
         return () => {
             clearTimeout(zoomTimer);

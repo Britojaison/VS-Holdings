@@ -31,8 +31,8 @@
   --font-heading: 'Ragoe', serif;
   --font-body: 'Helvetica Now Display', sans-serif;
 
-  --font-size-heading: 40px;
-  --font-size-body: 24px;
+  --font-size-heading: clamp(1.8rem, 4vw, 3.5rem);
+  --font-size-body: clamp(0.9rem, 1.2vw, 1.2rem);
 
   --background: var(--color-parchment);
   --foreground: var(--color-earth);
@@ -56,7 +56,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   line-height: 1.5;
-  scroll-behavior: smooth;
+  /* Reduced slipperiness by disabling native smooth scroll in favor of snap control */
+  scroll-behavior: auto;
 }
 
 /* Custom Scrollbar */

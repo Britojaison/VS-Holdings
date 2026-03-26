@@ -4,6 +4,8 @@
     height: 100vh;
     overflow: hidden;
     background-color: #000;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .slide {
@@ -13,7 +15,7 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.6s ease-in-out;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -26,7 +28,7 @@
 }
 
 .visible .active {
-    animation: zoomOut 1.5s ease-out forwards 1s;
+    animation: zoomOut 0.5s ease-out forwards 0.1s;
 }
 
 @keyframes zoomOut {
@@ -79,7 +81,7 @@
 
 .discoverButtonContainer {
     position: absolute;
-    bottom: 3rem;
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
@@ -91,7 +93,7 @@
 }
 
 .visible .discoverButtonContainer {
-    animation: fadeInUp 1s ease-out forwards 2s;
+    animation: fadeInUp 0.8s ease-out forwards 0.3s;
 }
 
 @keyframes fadeInUp {
@@ -107,8 +109,8 @@
 }
 
 .discoverButton {
-    min-width: 250px;
-    padding: 0.7rem 2.8rem;
+    min-width: 180px;
+    padding: 0.6rem 2.22rem;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 100%);
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
@@ -117,8 +119,8 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.2);
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    font-size: 16px;
+    letter-spacing: 0.15rem;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     display: flex;
@@ -130,7 +132,7 @@
 .discoverButton:hover {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
     border-color: #fff;
-    transform: translateY(-5px) scale(1.02);
+    transform: scale(1.02);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -146,7 +148,7 @@
 }
 
 .visible .active .slideTitleContainer {
-    animation: fadeInTitle 1.2s ease-out forwards 1.8s;
+    animation: fadeInTitle 0.8s ease-out forwards 0.4s;
 }
 
 @keyframes fadeInTitle {
@@ -163,7 +165,7 @@
 
 .slideTitle {
     color: white;
-    font-size: 28px;
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
     font-weight: 300;
     letter-spacing: 0.15rem;
     text-transform: uppercase;
@@ -178,7 +180,7 @@
     font-family: var(--font-heading);
     font-weight: 300;
     font-style: italic;
-    font-size: 42px;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
     letter-spacing: 0.2rem;
     color: white;
 }
