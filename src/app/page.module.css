@@ -39,7 +39,7 @@
 }
 
 .heroTitle {
-    font-size: var(--font-size-heading);
+    font-size: clamp(2.5rem, 12vw, 5rem);
     line-height: 1;
     margin-bottom: 2rem;
     background: linear-gradient(to right, var(--color-gold), var(--color-cream));
@@ -47,10 +47,11 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
+    font-weight: 400;
 }
 
 .heroSubtitle {
-    font-size: var(--font-size-body);
+    font-size: var(--font-size-subtitle);
     font-family: var(--font-body);
     max-width: 800px;
     margin: 0 auto 3rem;
@@ -88,7 +89,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 4%;
+    padding: clamp(1rem, 4vh, 2rem) 5%;
     z-index: 1000;
     background: transparent;
     transition: all 0.4s ease;
@@ -146,7 +147,7 @@
 
 
 .logoImage {
-    height: 128px;
+    height: clamp(60px, 12vh, 128px);
     width: auto;
 }
 
@@ -236,14 +237,37 @@
     }
 }
 
-@media (max-width: 900px) {
-    .centerText {
-        display: none;
+@media (max-width: 768px) {
+    .main {
+        scroll-snap-type: none;
+        /* Often smoother on mobile */
+    }
+
+    .hero,
+    .sliderContainer,
+    .container {
+        scroll-snap-align: none;
+    }
+
+    .heroTitle {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .heroSubtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        padding: 0 10%;
+    }
+
+    .cta {
+        padding: 1.2rem 2.5rem;
+        font-size: 0.9rem;
     }
 }
 
 .footer {
-    padding: 1.5rem 5%;
+    padding: clamp(1rem, 4vw, 2rem) 5%;
     background-color: #AD8330;
     color: white;
     text-align: center;
@@ -254,21 +278,22 @@
 }
 
 .copyright {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     opacity: 0.8;
     letter-spacing: 0.05rem;
+    line-height: 1.6;
 }
 
 @media (max-width: 600px) {
     .logoImage {
-        height: 32px;
-    }
-
-    .leftNav {
-        gap: 1rem;
+        height: 50px;
     }
 
     .footer {
-        padding: 0.75rem 5%;
+        padding: 1.5rem 8%;
+    }
+
+    .copyright {
+        font-size: 0.7rem;
     }
 }

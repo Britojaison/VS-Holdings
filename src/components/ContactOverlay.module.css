@@ -40,12 +40,13 @@
 }
 
 .formContainer {
-    width: 90%;
-    max-width: 1200px;
+    width: clamp(300px, 90%, 1200px);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10rem;
-    padding: 2rem;
+    gap: clamp(2rem, 10vw, 10rem);
+    padding: clamp(1rem, 5vh, 4rem) 2rem;
+    overflow-y: auto;
+    max-height: 90vh;
 }
 
 .leftSide h2 {
@@ -269,26 +270,59 @@
     transform: scale(1.15) rotate(5deg);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+    .overlay {
+        align-items: flex-start;
+        padding-top: 4rem;
+    }
+
     .formContainer {
         grid-template-columns: 1fr;
         gap: 4rem;
-        padding-top: 6rem;
+        padding: 2rem 5%;
+    }
+
+    .leftSide h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .phoneGroup {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .optionsList {
+        width: 100%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        top: auto;
+        border-radius: 20px 20px 0 0;
+        max-height: 50vh;
     }
 
     .fab {
-        width: 100px;
-        height: 44px;
-        transform: translateX(30px);
-        padding-left: 1.2rem;
+        width: 110px;
+        height: 48px;
+        transform: translateX(45px);
     }
 
     .fab:hover {
-        transform: translateX(50px);
+        transform: translateX(60px);
     }
 
     .fabContainer {
-        bottom: 2.5rem;
-        gap: 0.5rem;
+        bottom: 2rem;
+    }
+
+    .confirmButton {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .rightSide h3 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
     }
 }
