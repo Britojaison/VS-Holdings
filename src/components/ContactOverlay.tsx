@@ -55,10 +55,42 @@ const ContactOverlay = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.c === "+91"));
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [name, setName] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [email, setEmail] = useState("");
+    const [showThankYou, setShowThankYou] = useState(false);
+    const [hasConfirmed, setHasConfirmed] = useState(false);
     const pathname = usePathname();
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    const toggle = () => setIsOpen(!isOpen);
+    const isProjectPage = ["/sendhur-villa", "/meira-bloom"].includes(pathname);
+    const isMandatory = isProjectPage && !hasConfirmed;
+
+    const toggle = () => {
+        if (isMandatory) return;
+        setIsOpen(!isOpen);
+    };
+
+    useEffect(() => {
+        // Reset confirmation whenever the user navigates directly to a project page
+        if (["/sendhur-villa", "/meira-bloom"].includes(pathname)) {
+            setHasConfirmed(false);
+            setShowThankYou(false); // Make sure the form is visible again
+        }
+    }, [pathname]);
+
+    useEffect(() => {
+        if (isMandatory) {
+            document.body.style.overflow = "hidden";
+            if (!isOpen) {
+                const timer = setTimeout(() => setIsOpen(true), 800);
+                return () => clearTimeout(timer);
+            }
+        } else {
+            document.body.style.overflow = isOpen ? "hidden" : "auto";
+        }
+        return () => { document.body.style.overflow = "auto"; };
+    }, [isMandatory, isOpen]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -75,38 +107,21 @@ const ContactOverlay = () => {
         };
     }, [isDropdownOpen]);
 
-    useEffect(() => {
-        const triggerDrop = () => {
-            const projectPages = ["/sendhur-villa", "/meira-bloom"];
-            if (projectPages.includes(pathname) && !isOpen) {
-                setIsOpen(true);
-            }
-        };
+    // Removed old scroll-based trigger, it is now handled by the mandatory mount effect and manual triggers.
 
-        const handleScroll = () => {
-            if (window.scrollY > 50) triggerDrop();
-        };
-
-        const handleWheel = (e: WheelEvent) => {
-            if (e.deltaY > 0) triggerDrop();
-        };
-
-        const handleTouch = (e: TouchEvent) => {
-            // Very simple touch move detection for "down"
-            // For more precision we could track start/end Y, but a move is usually intent
-            triggerDrop();
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        window.addEventListener("wheel", handleWheel);
-        window.addEventListener("touchmove", handleTouch);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("wheel", handleWheel);
-            window.removeEventListener("touchmove", handleTouch);
-        };
-    }, [isOpen, pathname]);
+    const handleConfirm = () => {
+        if (!name.trim() || !mobile.trim() || !email.trim()) {
+            alert("Please fill all details.");
+            return;
+        }
+        setShowThankYou(true);
+        setTimeout(() => {
+            setHasConfirmed(true);
+            setIsOpen(false);
+            setShowThankYou(false);
+            document.body.style.overflow = "auto";
+        }, 2000);
+    };
 
     return (
         <>
@@ -120,57 +135,66 @@ const ContactOverlay = () => {
             </div>
 
             <div className={`${styles.overlay} ${isOpen ? styles.isOpen : ""}`}>
-                <button className={styles.closeButton} onClick={toggle}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M18 6L6 18M6 6l12 12" />
-                    </svg>
-                </button>
+                {!isMandatory && (
+                    <button className={styles.closeButton} onClick={toggle}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                    </button>
+                )}
 
                 <div className={styles.formContainer}>
-                    <div className={styles.leftSide}>
-                        <h2>CONNECT WITH <span>THE BRAND</span></h2>
-                        <div className={styles.inputGroup}>
-                            <label>NAME</label>
-                            <input type="text" placeholder="Your Full Name" />
+                    {showThankYou ? (
+                        <div className={styles.thankYouMessage}>
+                            <h2 className={styles.thankYouTitle}>THANK YOU!</h2>
+                            <p className={styles.thankYouText}>We have successfully received your interest and will be in touch shortly.</p>
                         </div>
-                        <div className={`${styles.inputGroup} ${styles.phoneGroup}`}>
-                            <div className={styles.countryCode} ref={dropdownRef}>
-                                <label>COUNTRY CODE</label>
-                                <div className={styles.selectWrapper} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                                    <div className={styles.selectedDisplay}>{selectedCountry?.n} ({selectedCountry?.c})</div>
-                                    <svg className={`${styles.chevron} ${isDropdownOpen ? styles.chevronOpen : ""}`} width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                        <path d="M1 1l4 4 4-4" />
-                                    </svg>
-                                    {isDropdownOpen && (
-                                        <div className={styles.optionsList}>
-                                            {countries.map((item, idx) => (
-                                                <div
-                                                    key={idx}
-                                                    className={styles.optionItem}
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        setSelectedCountry(item);
-                                                        setIsDropdownOpen(false);
-                                                    }}
-                                                >
-                                                    {item.n} ({item.c})
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
+                    ) : (
+                        <div className={styles.leftSide}>
+                            <h2>CONNECT WITH <span>THE BRAND</span></h2>
+                            <div className={styles.inputGroup}>
+                                <label>NAME</label>
+                                <input type="text" placeholder="Your Full Name" value={name} onChange={e => setName(e.target.value)} />
+                            </div>
+                            <div className={`${styles.inputGroup} ${styles.phoneGroup}`}>
+                                <div className={styles.countryCode} ref={dropdownRef}>
+                                    <label>COUNTRY CODE</label>
+                                    <div className={styles.selectWrapper} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                                        <div className={styles.selectedDisplay}>{selectedCountry?.n} ({selectedCountry?.c})</div>
+                                        <svg className={`${styles.chevron} ${isDropdownOpen ? styles.chevronOpen : ""}`} width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                            <path d="M1 1l4 4 4-4" />
+                                        </svg>
+                                        {isDropdownOpen && (
+                                            <div className={styles.optionsList}>
+                                                {countries.map((item, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className={styles.optionItem}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            setSelectedCountry(item);
+                                                            setIsDropdownOpen(false);
+                                                        }}
+                                                    >
+                                                        {item.n} ({item.c})
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label>MOBILE</label>
+                                    <input type="text" placeholder="5X XXX XXXX" value={mobile} onChange={e => setMobile(e.target.value)} />
                                 </div>
                             </div>
-                            <div>
-                                <label>MOBILE</label>
-                                <input type="text" placeholder="5X XXX XXXX" />
+                            <div className={styles.inputGroup}>
+                                <label>EMAIL</label>
+                                <input type="email" placeholder="email@address.com" value={email} onChange={e => setEmail(e.target.value)} />
                             </div>
+                            <button className={styles.confirmButton} onClick={handleConfirm}>CONFIRM NOW</button>
                         </div>
-                        <div className={styles.inputGroup}>
-                            <label>EMAIL</label>
-                            <input type="email" placeholder="email@address.com" />
-                        </div>
-                        <button className={styles.confirmButton}>CONFIRM NOW</button>
-                    </div>
+                    )}
 
                     <div className={styles.rightSide}>
                         <div className={styles.contactInfo}>

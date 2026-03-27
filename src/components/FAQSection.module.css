@@ -1,0 +1,131 @@
+.section {
+    padding: var(--section-padding) 0;
+    background-color: var(--color-earth);
+    /* Fits the theme cleanly below the black ProjectDetailsTabs */
+    color: var(--color-parchment);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.container {
+    width: clamp(300px, 90%, 800px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--color-gold);
+    letter-spacing: 0.15rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+.accordion {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordionItem {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordionHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.8rem 0;
+    background: none;
+    border: none;
+    color: var(--color-parchment);
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+.accordionHeader:hover {
+    color: #fff;
+}
+
+.open .accordionHeader {
+    color: var(--color-gold);
+}
+
+.question {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    font-weight: 400;
+}
+
+.iconWrapper {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--color-gold);
+    transition: all 0.3s ease;
+}
+
+.open .iconWrapper {
+    background: rgba(173, 131, 48, 0.1);
+    /* light gold wash */
+    border-color: rgba(173, 131, 48, 0.3);
+}
+
+.icon {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+}
+
+.open .icon {
+    transform: rotate(180deg);
+}
+
+.accordionContent {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.open .accordionContent {
+    grid-template-rows: 1fr;
+}
+
+.accordionInner {
+    overflow: hidden;
+}
+
+.answerText {
+    padding-bottom: 2rem;
+    padding-right: 2rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.03rem;
+}
+
+@media (max-width: 768px) {
+    .question {
+        font-size: 1rem;
+    }
+
+    .accordionHeader {
+        padding: 1.4rem 0;
+    }
+
+    .title {
+        margin-bottom: 2.5rem;
+    }
+}

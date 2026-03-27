@@ -1,0 +1,393 @@
+.section {
+    padding: 0 0 var(--section-padding) 0;
+    background-color: #000;
+    color: var(--color-parchment);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.tabNav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding-top: 0;
+}
+
+.tabItem {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.tabBtn {
+    background: none;
+    border: none;
+    color: var(--color-parchment);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    letter-spacing: 0.18rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+}
+
+.tabBtn:hover {
+    opacity: 1;
+}
+
+.activeTab {
+    opacity: 1;
+    color: #fff;
+    font-weight: 500;
+    border-bottom: 2px solid var(--color-gold);
+    /* subtle underline or golden accent could look nice, but left standard per screenshot */
+}
+
+.tabDivider {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.contentContainer {
+    width: 100%;
+    max-width: 1000px;
+    height: 565.2px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 1050px) {
+    .contentContainer {
+        height: auto;
+        aspect-ratio: 1000 / 565.2;
+    }
+}
+
+.locationContainer {
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.mapIframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.galleryContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.galleryImageWrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallerySlide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: opacity 0.5s ease-in-out;
+}
+
+.activeSlide {
+    opacity: 1;
+    z-index: 10;
+    animation: zoomOut 0.8s ease-out forwards;
+}
+
+@keyframes zoomOut {
+    0% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.caption {
+    position: absolute;
+    bottom: -3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeInText 0.6s ease-out forwards 0.5s;
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.floorPlansContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.4s ease-out;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.subTabsContainer {
+    background-color: #333333;
+    display: flex;
+    justify-content: center;
+}
+
+.subTabs {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+}
+
+.subTabBtn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 1rem 0;
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.activeSubTab {
+    background-color: transparent;
+    color: #fff;
+    box-shadow: inset 0 -2px 0 var(--color-gold);
+}
+
+.subTabBtn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.floorPlanImageContainer {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.floorPlanTitle {
+    color: var(--color-gold);
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+}
+
+.floorPlanImage {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.brochureContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.4s ease-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.brochureOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brochureContent {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 3rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(173, 131, 48, 0.2);
+}
+
+.brochureHeading {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+    letter-spacing: 0.1rem;
+}
+
+.brochureText {
+    opacity: 0.7;
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+}
+
+.downloadBtn {
+    background: linear-gradient(135deg, rgba(173, 131, 48, 0.2), rgba(107, 91, 45, 0.3));
+    border: 1px solid rgba(173, 131, 48, 0.5);
+    color: var(--color-parchment);
+    padding: 1rem 3rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    backdrop-filter: blur(10px);
+}
+
+.downloadBtn:hover {
+    background: linear-gradient(135deg, rgba(173, 131, 48, 0.4), rgba(107, 91, 45, 0.5));
+    border-color: var(--color-gold);
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    padding: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.arrow:hover {
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.leftArrow {
+    left: 1rem;
+}
+
+.rightArrow {
+    right: 1rem;
+}
+
+.arrowIcon {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
+    stroke-width: 1.2;
+    fill: none;
+    transition: transform 0.3s ease;
+}
+
+.arrow:hover .arrowIcon {
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 900px) {
+    .contentContainer {
+        width: 100%;
+    }
+
+    .leftArrow {
+        left: 0.5rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        padding: 0.5rem;
+    }
+
+    .rightArrow {
+        right: 0.5rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        padding: 0.5rem;
+    }
+
+    .tabNav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .tabItem {
+        gap: 0.5rem;
+    }
+
+    .subTabs {
+        flex-wrap: wrap;
+    }
+
+    .subTabBtn {
+        padding: 0.8rem 1rem;
+    }
+}

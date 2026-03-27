@@ -1,6 +1,6 @@
 .main {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     overflow: hidden;
     background-color: #000;
@@ -184,5 +184,28 @@
     .value {
         font-size: 12px;
         letter-spacing: 0.1rem;
+    }
+}
+
+.pageFooter {
+    width: 100%;
+    background-color: var(--color-gold);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    font-family: var(--font-body);
+    border-top: 1px solid rgba(173, 131, 48, 0.2);
+}
+
+.copyright {
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .pageFooter {
+        padding: 1.5rem 1rem;
+        font-size: 0.7rem;
     }
 }
