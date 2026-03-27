@@ -81,7 +81,7 @@
 
 .discoverButtonContainer {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
@@ -214,7 +214,7 @@
     }
 
     .discoverButtonContainer {
-        bottom: 4rem;
+        bottom: 20%;
         width: 100%;
         display: flex;
         justify-content: center;
