@@ -304,38 +304,35 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 50%;
+    background: none;
     border: none;
     cursor: pointer;
     z-index: 20;
-    color: rgba(255, 255, 255, 0.8);
-    transition: all 0.3s ease;
-    padding: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(4px);
 }
 
 .arrow:hover {
     color: white;
-    background: rgba(0, 0, 0, 0.8);
 }
 
 .leftArrow {
-    left: 1rem;
+    left: -5rem;
 }
 
 .rightArrow {
-    right: 1rem;
+    right: -5rem;
 }
 
 .arrowIcon {
     width: 32px;
     height: 32px;
     stroke: currentColor;
-    stroke-width: 1.2;
+    stroke-width: 1.5;
     fill: none;
     transition: transform 0.3s ease;
 }
@@ -362,17 +359,16 @@
     }
 
     .leftArrow {
-        left: 0.5rem;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 50%;
-        padding: 0.5rem;
+        left: 0;
     }
 
     .rightArrow {
-        right: 0.5rem;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 50%;
-        padding: 0.5rem;
+        right: 0;
+    }
+
+    .arrow {
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.2);
     }
 
     .tabNav {

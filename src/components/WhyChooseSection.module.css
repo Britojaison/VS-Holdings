@@ -1,6 +1,6 @@
 .section {
     padding: var(--section-padding) 0;
-    background-color: var(--color-earth);
+    background-color: var(--color-gold);
     color: var(--color-parchment);
     min-height: 80vh;
     display: flex;
@@ -31,7 +31,7 @@
 
 .projectName {
     font-family: var(--font-heading);
-    color: var(--color-gold);
+    color: var(--color-earth);
     font-style: italic;
     font-weight: 400;
     white-space: nowrap;
@@ -51,8 +51,7 @@
     font-family: var(--font-body);
     font-size: clamp(0.9rem, 1.5vw, 1.1rem);
     line-height: 1.8;
-    color: rgba(248, 238, 219, 0.85);
-    /* Slightly muted parchment color */
+    color: rgba(248, 238, 219, 0.95);
     letter-spacing: 0.02em;
 }
 
