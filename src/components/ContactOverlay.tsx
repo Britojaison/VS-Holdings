@@ -82,14 +82,19 @@ const ContactOverlay = () => {
     useEffect(() => {
         if (isMandatory) {
             document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
             if (!isOpen) {
                 const timer = setTimeout(() => setIsOpen(true), 800);
                 return () => clearTimeout(timer);
             }
         } else {
-            document.body.style.overflow = isOpen ? "hidden" : "auto";
+            document.body.style.overflow = isOpen ? "hidden" : "";
+            document.documentElement.style.overflow = isOpen ? "hidden" : "";
         }
-        return () => { document.body.style.overflow = "auto"; };
+        return () => {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        };
     }, [isMandatory, isOpen]);
 
     useEffect(() => {
@@ -119,7 +124,15 @@ const ContactOverlay = () => {
             setHasConfirmed(true);
             setIsOpen(false);
             setShowThankYou(false);
-            document.body.style.overflow = "auto";
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+
+            setTimeout(() => {
+                const element = document.getElementById("why-choose-section");
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                }
+            }, 100);
         }, 2000);
     };
 

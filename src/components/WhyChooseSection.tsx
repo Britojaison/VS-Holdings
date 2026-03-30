@@ -6,7 +6,7 @@ interface WhyChooseProps {
 
 const WhyChooseSection = ({ projectName }: WhyChooseProps) => {
     return (
-        <section className={styles.section}>
+        <section id="why-choose-section" className={styles.section}>
             <div className={styles.container}>
                 <h2 className={styles.title}>
                     WHY CHOOSE <span className={styles.projectName}>{projectName.toUpperCase()}?</span>
