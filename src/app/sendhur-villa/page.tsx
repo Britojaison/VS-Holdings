@@ -65,7 +65,7 @@ const CollectionPage = () => {
                 </div>
             </main>
             <WhyChooseSection projectName="Sendhur Villa" />
-            <ProjectCarousel />
+            <ProjectCarousel images={['/images/a.jpg', '/images/1.jpg', '/images/3.jpg']} />
             <ProjectDetailsTabs />
             <FAQSection projectName="Sendhur Villa" />
             <footer className={styles.pageFooter}>

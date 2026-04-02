@@ -3,16 +3,14 @@
 import { useState } from 'react';
 import styles from './ProjectCarousel.module.css';
 
-const images = [
-    '/images/1.jpg',
-    '/images/2.jpg',
-    '/images/3.jpg',
-    '/images/4.jpg',
-    '/images/6.jpg',
-];
+interface ProjectCarouselProps {
+    images: string[];
+}
 
-const ProjectCarousel = () => {
+const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    if (!images || images.length === 0) return null;
 
     const handleNext = () => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
